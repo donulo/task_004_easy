@@ -28,6 +28,7 @@ void input(int* count, Rectangle** rects) {
         *rects = calloc(*count, sizeof(Rectangle));
         for (int i = 0; i < *count; i++) {
             if (scanf("%d%d%d", &(*rects)[i].index, &(*rects)[i].a, &(*rects)[i].b) != 3) exception();
+            if ((*rects)[i].index <= 0 || (*rects)[i].a <= 0 || (*rects)[i].b <= 0) exception();
         }
     } else
         exception();
@@ -35,7 +36,8 @@ void input(int* count, Rectangle** rects) {
 
 void output(int count, Rectangle* rects) {
     for (int i = 0; i < count; i++) {
-        printf("%d %d\n", rects[i].index, square(rects[i]));
+        if (i != 0) printf("\n");
+        printf("%d %d", rects[i].index, square(rects[i]));
     }
     free(rects);
 }
